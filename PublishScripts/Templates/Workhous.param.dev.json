@@ -1,0 +1,32 @@
+{
+  "siteName": {
+    "value": "Workhous"
+  },
+  "hostingPlanName": {
+    "value": "worhoursServicePlan"
+  },
+  "siteLocation": {
+    "value": "North Europe"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "serverName": {
+    "value": "workhours"
+  },
+  "serverLocation": {
+    "value": "North Europe"
+  },
+  "administratorLogin": {
+    "value": "workhours"
+  },
+  "administratorLoginPassword": {
+    "value": "DBadmin1"
+  },
+  "databaseName": {
+    "value": "Workhous_db"
+  }
+}

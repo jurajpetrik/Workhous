@@ -29,5 +29,7 @@ namespace Workhous.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Workhous.Models.Project> Projects { get; set; }
     }
 }

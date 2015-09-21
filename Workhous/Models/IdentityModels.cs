@@ -31,5 +31,7 @@ namespace Workhous.Models
         }
 
         public System.Data.Entity.DbSet<Workhous.Models.Project> Projects { get; set; }
+
+        public System.Data.Entity.DbSet<Workhous.Models.TimeEntry> TimeEntries { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,8 @@ namespace Workhous.Models
         public int ID { get; set; }
         public DateTime from { get; set; }
         public DateTime until { get; set; }
+        public int ProjectID { get; set; }
+        [ForeignKey("ProjectID")]
         public virtual Project Project { get; set; }
     }
 }

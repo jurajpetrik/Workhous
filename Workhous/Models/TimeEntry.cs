@@ -9,8 +9,8 @@ namespace Workhous.Models
     public class TimeEntry
     {
         public int ID { get; set; }
-        public DateTime from { get; set; }
-        public DateTime until { get; set; }
+        public DateTime Day { get; set; }
+        public int NumOfHours { get; set; }
         public int ProjectID { get; set; }
         [ForeignKey("ProjectID")]
         public virtual Project Project { get; set; }

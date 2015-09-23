@@ -47,7 +47,9 @@ namespace Workhous.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new Tuple<Project,TimeEntry>(project,null));
+            TimeEntry timeEntry = new TimeEntry();
+            timeEntry.ProjectID = project.ID;
+            return View(new ProjectTimeEntry(project,timeEntry));
         }
 
         // POST: TimeEntries/Create
@@ -55,16 +57,16 @@ namespace Workhous.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,from,until")] TimeEntry timeEntry)
+        public ActionResult Create(ProjectTimeEntry ProjectTimeEntry)
         {
             if (ModelState.IsValid)
             {
-                db.TimeEntries.Add(timeEntry);
+                db.TimeEntries.Add(ProjectTimeEntry.TimeEntry);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(timeEntry);
+            return View(ProjectTimeEntry.TimeEntry);
         }
 
         // GET: TimeEntries/Edit/5

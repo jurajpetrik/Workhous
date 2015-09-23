@@ -35,10 +35,19 @@ namespace Workhous.Controllers
             return View(timeEntry);
         }
 
-        // GET: TimeEntries/Create
-        public ActionResult Create()
+        // GET: TimeEntries/Create/1
+        public ActionResult Create(int? projectId)
         {
-            return View();
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Project project = db.Projects.Find(projectId);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(new Tuple<Project,TimeEntry>(project,null));
         }
 
         // POST: TimeEntries/Create

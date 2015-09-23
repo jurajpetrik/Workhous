@@ -29,6 +29,7 @@
             @Html.DisplayFor(modelItem => item.PricePerHour)
         </td>
         <td>
+            @Html.ActionLink("Log Time", "Create", "TimeEntries", new { projectId = item.ID },null) |
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })

@@ -27,6 +27,21 @@
         </dd>
 
     </dl>
+    <table>
+        @foreach (var timeEntry in Model.TimeEntries)
+        {
+            <tr>
+                <td>
+                    @timeEntry.Day.ToString("dd.MM")
+                </td>
+                <td>
+                    @timeEntry.NumOfHours hours
+                </td>
+            </tr>
+        }
+    </table>
+
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

@@ -10,7 +10,7 @@ namespace Workhous.Models
     {
         public int ID { get; set; }
         public DateTime Day { get; set; }
-        public int NumOfHours { get; set; }
+        public decimal NumOfHours { get; set; }
         public int ProjectID { get; set; }
         [ForeignKey("ProjectID")]
         public virtual Project Project { get; set; }

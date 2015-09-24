@@ -1,49 +1,65 @@
-﻿@model Workhous.Models.Project
+﻿@model Workhous.Models.ProjectViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Project @Html.DisplayFor(model => model.Project.Name) for @Html.DisplayFor(model => model.DateString)</h2>
 
 <div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <br />
+    <h4>Summary</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Amount of Hours
+            </th>
+            <th>
+                Price to Bill
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @(Model.TotalHours)
+            </td>
+            <td>
+                @(String.Format("{0:C}", Model.TotalHours * Model.Project.PricePerHour))
+            </td>
+        </tr>
+    </table>
+    <br />
+    <h4>Breakdown</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Day
+            </th>
+            <th>
+                Hours
+            </th>
+            <th>
+                Price
+            </th>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PricePerHour)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PricePerHour)
-        </dd>
-
-    </dl>
-    <table>
-        @foreach (var timeEntry in Model.TimeEntries)
+        @foreach (var timeEntry in Model.Project.TimeEntries)
         {
             <tr>
                 <td>
                     @timeEntry.Day.ToString("dd.MM")
                 </td>
                 <td>
-                    @timeEntry.NumOfHours hours
+                    @timeEntry.NumOfHours
+                </td>
+                <td>
+                    @(String.Format("{0:C}",Model.Project.PricePerHour*timeEntry.NumOfHours))
                 </td>
             </tr>
         }
     </table>
-
-
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Project.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+

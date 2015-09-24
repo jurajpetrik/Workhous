@@ -22,25 +22,25 @@ namespace Workhous.Controllers
         }
 
         // GET: Projects/Details/5
-        public ActionResult Details(int? id, DateTime? monthToSelect)
+        public ActionResult Details(int? id, DateTime month)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Project project = db.Projects.Find(id);
-            if (monthToSelect != null)
-            {
-                DateTime month = monthToSelect ?? DateTime.Now;
-                DateTime lowestDate = DateTimeUtil.firstDayOfTheMonth(month);
-                DateTime highestDate = DateTimeUtil.lastDayOfTheMonth(month);
-                project.TimeEntries = project.TimeEntries.Where(t => DateTimeUtil.isDateWithinRange(t.Day,lowestDate,highestDate)).ToList<TimeEntry>();
-            }
             if (project == null)
             {
                 return HttpNotFound();
-            }
-            return View(project);
+            }        
+            DateTime lowestDate = DateTimeUtil.firstDayOfTheMonth(month);
+            DateTime highestDate = DateTimeUtil.lastDayOfTheMonth(month);
+            project.TimeEntries = project.TimeEntries.Where(t => DateTimeUtil.isDateWithinRange(t.Day, lowestDate, highestDate)).ToList<TimeEntry>();
+            project.TimeEntries = project.TimeEntries.OrderBy(t => t.Day).ToList<TimeEntry>();
+            ProjectViewModel projectViewModel = new ProjectViewModel(project);
+            projectViewModel.TotalHours= project.TimeEntries.Sum(t => t.NumOfHours);
+            projectViewModel.DateString = month.ToString("MMMM, yyyy");
+            return View(projectViewModel);
         }
 
         // GET: Projects/Create

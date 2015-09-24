@@ -63,7 +63,7 @@ namespace Workhous.Controllers
             {
                 db.TimeEntries.Add(ProjectTimeEntry.TimeEntry);
                 db.SaveChanges();
-                return RedirectToAction("Details","Projects",new { id=ProjectTimeEntry.TimeEntry.ProjectID});
+                return RedirectToAction("Details","Projects",new { id=ProjectTimeEntry.TimeEntry.ProjectID, month = ProjectTimeEntry.TimeEntry.Day});
             }
 
             return View(ProjectTimeEntry.TimeEntry);

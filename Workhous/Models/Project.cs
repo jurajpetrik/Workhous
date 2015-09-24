@@ -9,7 +9,16 @@ namespace Workhous.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public double PricePerHour { get; set; }
+        public decimal PricePerHour { get; set; }
         public virtual ICollection<TimeEntry> TimeEntries { get; set; }
+    }
+
+    public class ProjectViewModel
+    {
+        public ProjectViewModel() { }
+        public ProjectViewModel(Project _project) { this.Project = _project; }
+        public Project Project { get; set; }
+        public string DateString { get; set; }
+        public decimal TotalHours { get; set; }
     }
 }

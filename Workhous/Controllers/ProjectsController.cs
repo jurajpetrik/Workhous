@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Workhous.Models;
+using Workhous.Utils;
 
 namespace Workhous.Controllers
 {
@@ -21,13 +22,20 @@ namespace Workhous.Controllers
         }
 
         // GET: Projects/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, DateTime? monthToSelect)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Project project = db.Projects.Find(id);
+            if (monthToSelect != null)
+            {
+                DateTime month = monthToSelect ?? DateTime.Now;
+                DateTime lowestDate = DateTimeUtil.firstDayOfTheMonth(month);
+                DateTime highestDate = DateTimeUtil.lastDayOfTheMonth(month);
+                project.TimeEntries = project.TimeEntries.Where(t => DateTimeUtil.isDateWithinRange(t.Day,lowestDate,highestDate)).ToList<TimeEntry>();
+            }
             if (project == null)
             {
                 return HttpNotFound();
@@ -123,5 +131,6 @@ namespace Workhous.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

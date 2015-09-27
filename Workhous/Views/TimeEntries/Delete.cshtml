@@ -1,4 +1,4 @@
-﻿@model Workhous.Models.TimeEntry
+﻿@model Workhous.Models.ProjectTimeEntry
 
 @{
     ViewBag.Title = "Delete";
@@ -12,23 +12,24 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Project
+            @Html.DisplayNameFor(model=>model.ProjectName)
         </dt>
-            
+         <dd>
+             @Html.DisplayFor(model => model.ProjectName)
+         </dd>
         <dt>
-            @Model.Day.ToString("dd.MM.yyyy")
-        </dt>
-
+            @Html.DisplayNameFor(model => model.TimeEntry.Day)
+        </dt>           
         <dd>
-            @Html.DisplayFor(model => model.Day)
+            @Model.TimeEntry.Day.ToString("dd.MM.yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NumOfHours)
+            @Html.DisplayNameFor(model => model.TimeEntry.NumOfHours)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NumOfHours)
+            @Html.DisplayFor(model => model.TimeEntry.NumOfHours)
         </dd>
 
     </dl>

@@ -36,20 +36,11 @@ namespace Workhous.Controllers
         }
 
         // GET: TimeEntries/Create/1
-        public ActionResult Create(int? projectId)
+        public ActionResult Create(int projectId, string projectName)
         {
-            if (projectId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Project project = db.Projects.Find(projectId);
-            if (project == null)
-            {
-                return HttpNotFound();
-            }
             TimeEntry timeEntry = new TimeEntry();
-            timeEntry.ProjectID = project.ID;
-            return View(new ProjectTimeEntry(project,timeEntry));
+            timeEntry.ProjectID = projectId;
+            return View(new ProjectTimeEntry(projectName,timeEntry));
         }
 
         // POST: TimeEntries/Create
@@ -101,7 +92,7 @@ namespace Workhous.Controllers
         }
 
         // GET: TimeEntries/Delete/5
-        public ActionResult Delete(int? id, int projectId)
+        public ActionResult Delete(int? id, int projectId, string projectName)
         {
             if (id == null)
             {
@@ -112,7 +103,7 @@ namespace Workhous.Controllers
             {
                 return HttpNotFound();
             }
-            return View(timeEntry);
+            return View(new ProjectTimeEntry(projectName, timeEntry));
         }
 
         // POST: TimeEntries/Delete/5

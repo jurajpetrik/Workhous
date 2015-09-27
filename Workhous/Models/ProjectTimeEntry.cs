@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,12 +12,13 @@ namespace Workhous.Models
         {
 
         }
-        public ProjectTimeEntry(Project _project, TimeEntry _timeEntry)
+        public ProjectTimeEntry(string _project, TimeEntry _timeEntry)
         {
-            this.Project = _project;
+            this.ProjectName = _project;
             this.TimeEntry = _timeEntry;
         }
-        public Project Project { get; set; }
+        [Display(Name = "Project Name")]
+        public string ProjectName { get; set; }
         public TimeEntry TimeEntry { get; set; }
     }
 }

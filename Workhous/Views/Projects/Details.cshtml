@@ -54,6 +54,10 @@
                 <td>
                     @(String.Format("{0:C}",Model.Project.PricePerHour*timeEntry.NumOfHours))
                 </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "TimeEntries", new { id = timeEntry.ID, projectId = Model.Project.ID},null)
+
+                </td>
             </tr>
         }
     </table>

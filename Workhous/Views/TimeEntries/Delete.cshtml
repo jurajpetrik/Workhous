@@ -12,19 +12,23 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.from)
+            Project
+        </dt>
+            
+        <dt>
+            @Model.Day.ToString("dd.MM.yyyy")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.from)
+            @Html.DisplayFor(model => model.Day)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.until)
+            @Html.DisplayNameFor(model => model.NumOfHours)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.until)
+            @Html.DisplayFor(model => model.NumOfHours)
         </dd>
 
     </dl>

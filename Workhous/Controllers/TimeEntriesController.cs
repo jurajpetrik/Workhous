@@ -63,7 +63,7 @@ namespace Workhous.Controllers
             {
                 db.TimeEntries.Add(ProjectTimeEntry.TimeEntry);
                 db.SaveChanges();
-                return RedirectToAction("Details","Projects",new { id=ProjectTimeEntry.TimeEntry.ProjectID, month = ProjectTimeEntry.TimeEntry.Day});
+                return RedirectToProjectDetailsContainingTimeEntry(ProjectTimeEntry.TimeEntry);          
             }
 
             return View(ProjectTimeEntry.TimeEntry);
@@ -101,7 +101,7 @@ namespace Workhous.Controllers
         }
 
         // GET: TimeEntries/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int projectId)
         {
             if (id == null)
             {
@@ -117,13 +117,12 @@ namespace Workhous.Controllers
 
         // POST: TimeEntries/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             TimeEntry timeEntry = db.TimeEntries.Find(id);
             db.TimeEntries.Remove(timeEntry);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToProjectDetailsContainingTimeEntry(timeEntry);
         }
 
         protected override void Dispose(bool disposing)
@@ -133,6 +132,11 @@ namespace Workhous.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private ActionResult RedirectToProjectDetailsContainingTimeEntry(TimeEntry timeEntry)
+        {
+            return RedirectToAction("Details", "Projects", new { id = timeEntry.ProjectID, month = timeEntry.Day });
         }
     }
 }

@@ -40,6 +40,7 @@ namespace Workhous.Controllers
             ProjectViewModel projectViewModel = new ProjectViewModel(project);
             projectViewModel.TotalHours= project.TimeEntries.Sum(t => t.NumOfHours);
             projectViewModel.DateString = month.ToString("MMMM, yyyy");
+            projectViewModel.Month = month;
             return View(projectViewModel);
         }
 

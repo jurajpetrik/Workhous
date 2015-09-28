@@ -31,7 +31,7 @@
         <td>
             @Html.ActionLink("Log Time", "Create", "TimeEntries", new { projectId = item.ID, projectName = item.Name },null) |
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID, month = DateTime.Now }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>

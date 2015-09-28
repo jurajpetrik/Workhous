@@ -62,7 +62,14 @@
         }
     </table>
 </div>
+<br />
 <p>
+    @using (Html.BeginForm("Details", "Projects", FormMethod.Get))
+    {
+        <h5>Choose another month</h5>
+        @Html.TextBox("month", Model.Month.ToString("yyyy-MM-dd"), new { type = "date", @class = "datepicker form-control" })
+        <input type="submit" value="Choose" class="btn btn-default" />
+    }
     @Html.ActionLink("Edit", "Edit", new { id = Model.Project.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

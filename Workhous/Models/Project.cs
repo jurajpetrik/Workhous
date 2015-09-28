@@ -20,6 +20,7 @@ namespace Workhous.Models
         public ProjectViewModel() { }
         public ProjectViewModel(Project _project) { this.Project = _project; }
         public Project Project { get; set; }
+        public DateTime Month { get; set; }
         public string DateString { get; set; }
         public decimal TotalHours { get; set; }
     }

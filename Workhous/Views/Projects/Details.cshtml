@@ -6,8 +6,19 @@
 
 <h2>Project @Html.DisplayFor(model => model.Project.Name) for @Html.DisplayFor(model => model.DateString)</h2>
 
+<span class='btn-toolbar pull-right'>
+    @Html.ActionLink("Previous Month", "Details", new { id = Model.Project.ID, month = Model.Month.AddMonths(-1) }) |
+    @Html.ActionLink("Next Month", "Details", new { id = Model.Project.ID, month = Model.Month.AddMonths(1) })
+</span>
+
+<br />
+@if (Model.Project.TimeEntries.Count <= 0)
+{
+    <p>You don't have any time logged for this month.</p>
+}
+else
+{
 <div>
-    <br />
     <h4>Summary</h4>
     <table class="table">
         <tr>
@@ -62,14 +73,9 @@
         }
     </table>
 </div>
+}
 <br />
 <p>
-    @using (Html.BeginForm("Details", "Projects", FormMethod.Get))
-    {
-        <h5>Choose another month</h5>
-        @Html.TextBox("month", Model.Month.ToString("yyyy-MM-dd"), new { type = "date", @class = "datepicker form-control" })
-        <input type="submit" value="Choose" class="btn btn-default" />
-    }
     @Html.ActionLink("Edit", "Edit", new { id = Model.Project.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

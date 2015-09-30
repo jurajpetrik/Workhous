@@ -250,9 +250,6 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\TimeEntries\Create.cshtml" />
     <Content Include="Views\TimeEntries\Delete.cshtml" />
-    <Content Include="Views\TimeEntries\Details.cshtml" />
-    <Content Include="Views\TimeEntries\Edit.cshtml" />
-    <Content Include="Views\TimeEntries\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -76,6 +76,7 @@ else
 }
 <br />
 <p>
+    @Html.ActionLink("Log Time", "Create", "TimeEntries", new { projectId = Model.Project.ID, projectName = Model.Project.Name }, null) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Project.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

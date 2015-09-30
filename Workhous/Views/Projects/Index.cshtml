@@ -30,8 +30,8 @@
         </td>
         <td>
             @Html.ActionLink("Log Time", "Create", "TimeEntries", new { projectId = item.ID, projectName = item.Name },null) |
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID, month = DateTime.Now.ToString("yyyy-MM-dd") }) |
+            @Html.ActionLink("Invoice", "Details", new { id = item.ID, month = DateTime.Now.ToString("yyyy-MM-dd") }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |                  
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
